@@ -1,16 +1,22 @@
-steps:
-- task: FlutterInstall@0
-  inputs:
-    channel: 'stable'
-    version: 'latest'
-- task: Gradle@2
-  inputs:
-    workingDirectory: ''
-    gradleWrapperFile: $(system.defaultWorkingDirectory)/IdentityService/gradlew
-    gradleOptions: '-Xmx3072m'
-    javaHomeOption: 'JDKVersion'
-    jdkVersionOption: '1.11'
-    jdkArchitectureOption: 'x64'
-    publishJUnitResults: false
-    testResultsFiles: '**/TEST-*.xml'
-    tasks: 'build'
+# Flutter build
+variables:
+  projectDirectory: sample_project
+
+jobs:
+  - job: Android
+    pool:
+      vmImage: 'macOS-10.13'
+    steps:
+    - task: FlutterInstall@0
+    - task: FlutterBuild@0
+      inputs:
+        target: apk
+        projectDirectory: $(projectDirectory)
+    - task: FlutterTest@0
+      inputs:
+        projectDirectory: $(projectDirectory)
+    - task: CopyFiles@2
+      inputs:
+        contents: '**/*.apk'
+        targetFolder: '$(build.artifactStagingDirectory)'
+    - task: PublishBuildArtifacts@1
