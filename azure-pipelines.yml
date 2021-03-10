@@ -1,6 +1,6 @@
 # Flutter build
 variables:
-  projectDirectory: talkout
+  projectDirectory: .
 
 jobs:
   - job: Android
