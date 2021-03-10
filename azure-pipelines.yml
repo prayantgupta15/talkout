@@ -19,8 +19,8 @@ jobs:
     - task: FlutterTest@0
       inputs:
         projectDirectory: $(projectDirectory)
-    - task: CopyFiles@2
-      inputs:
-        contents: '**/*.apk'
-        targetFolder: '$(build.artifactStagingDirectory)'
-    - task: PublishBuildArtifacts@1
+    # - task: CopyFiles@2
+    #   inputs:
+    #     contents: '**/*.apk'
+    #     targetFolder: '$(build.artifactStagingDirectory)'
+    # - task: PublishBuildArtifacts@1
