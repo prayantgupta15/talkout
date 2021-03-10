@@ -1,6 +1,6 @@
 # Flutter build
 variables:
-  projectDirectory: sample_project
+  projectDirectory: .
 
 jobs:
   - job: Android
