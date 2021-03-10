@@ -1,4 +1,8 @@
 steps:
+- task: FlutterInstall@0
+  inputs:
+    channel: 'stable'
+    version: 'latest'
 - task: Gradle@2
   inputs:
     workingDirectory: ''
